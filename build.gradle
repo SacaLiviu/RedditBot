@@ -1,0 +1,26 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'RedditVideoUploader'
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+version = '1.0'
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+
+dependencies {
+    compile 'com.google.api-client:google-api-client:1.23.0'
+    compile 'com.google.oauth-client:google-oauth-client-jetty:1.23.0'
+    compile 'com.google.apis:google-api-services-youtubeAnalytics:v2-rev16-1.23.0'
+    compile 'com.google.apis:google-api-services-youtube:v3-rev20200618-1.30.9'
+    compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
+    compile group: 'com.github.jreddit', name: 'jreddit', version: '1.0.3'
+    compile group: 'net.dean.jraw', name: 'JRAW', version: '1.1.0'
+
+}
