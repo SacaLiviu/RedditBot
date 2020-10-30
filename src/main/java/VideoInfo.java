@@ -2,29 +2,23 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
-import org.json.simple.parser.ParseException;
-
 import java.io.FileReader;
 import java.io.IOException;
 
 public class VideoInfo {
-
     public String StaticTitle="";
-
-
     public void setStaticTitle(String StaticTitle){
         this.StaticTitle=StaticTitle;
     }
     public String getStaticTitle(){
         return StaticTitle;
     }
-
-    public JsonObject getVideoInfo() throws IOException, ParseException {
+    public JsonObject getVideoInfo() throws IOException {
         Gson gson = new Gson();
-        JsonReader reader = new JsonReader(new FileReader(""));
+        JsonReader reader = new JsonReader(new FileReader("OUTPUT_LOCATION"));
         return gson.fromJson(reader,JsonObject.class);
     }
-    public String getVideoTitle() throws IOException, ParseException {
+    public String getVideoTitle() throws IOException {
         VideoInfo titlu = new VideoInfo();
         JsonObject JsonData= titlu.getVideoInfo();
         try {
@@ -41,12 +35,14 @@ public class VideoInfo {
                     .getAsJsonObject()
                     .get("totalResults") + " results available. Trying again in 5 minutes";
         }
+
     }
 
-    public boolean checkTitle() throws IOException, ParseException {
+    public boolean checkTitle() throws IOException {
         boolean titleBoolean=false;
         if (getVideoTitle().equals(getStaticTitle())) {
              titleBoolean=true;
+
         }
         else {
             setStaticTitle(getVideoTitle());
@@ -54,7 +50,7 @@ public class VideoInfo {
         return titleBoolean;
     }
 
-    public String getVideoId() throws IOException, ParseException {
+    public String getVideoId() throws IOException {
         VideoInfo video = new VideoInfo();
         JsonObject JsonData= video.getVideoInfo();
         try {
@@ -69,7 +65,7 @@ public class VideoInfo {
                     .getAsString();
         }
         catch (Exception e){
-            return JsonData.get("pageInfo").getAsJsonObject().get("totalResults") + " results available. Trying again in 5 minutes";
+            return null;
         }
     }
 }
